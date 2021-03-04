@@ -1,10 +1,16 @@
 const Item = require('../models/item.model');
 
 const addItem = async (req, res) => {
-  const { name, description, nutrition, ingredients } = req.body;
-  if (!(name && description && nutrition && ingredients)) return res.status(400).json({ message: 'Bad request', status: 400 });
+  const { name, description, nutrition, ingredients, price } = req.body;
+  if (!(name && description && nutrition && ingredients && price)) return res.status(400).json({ message: 'Bad request', status: 400 });
   try {
-    const item = new Item({ name: name, description: description, nutrition: nutrition, ingredients: ingredients });
+    const item = new Item({
+      name: name,
+      description: description,
+      nutrition: nutrition,
+      ingredients: ingredients,
+      price: price,
+    });
     await item.save();
     res.status(200).json(item);
   } catch (err) {

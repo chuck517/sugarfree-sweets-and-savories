@@ -17,6 +17,10 @@ const itemSchema = new Schema({
     type: String,
     required: true,
   },
+  price: {
+    type: Number,
+    required: true,
+  },
 });
 
 module.exports = model('Item', itemSchema);

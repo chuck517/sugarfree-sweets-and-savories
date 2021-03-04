@@ -5,7 +5,8 @@ const User = require('../models/user.model');
 
 const SALT = parseInt(process.env.SALT);
 
-const addUser = async (req, res) => {
+/* Controller function to handle registration requests */
+const register = async (req, res) => {
   const { email, password, firstName, lastName } = req.body;
   if (!(email && password && firstName && lastName)) return res.status(400).json({ message: 'Bad request', status: 400 });
   try {
@@ -35,21 +36,48 @@ const addUser = async (req, res) => {
     req.session.uid = user._id;
     res.status(201).json(user);
   } catch (err) {
+    console.log('ERROR: Unable to create user: \n' , err);
     res.status(400).json({ err, message: "Unable to create user, please check your information and try again." });
   }
 }
 
-const getUsers = async (_, res) => {
+/* Controller function to handle login requests */
+const login = async (req, res) => {
+  const { email, password } = req.body;
+  if (!(email && password)) return res.status(401).json({ error: 'Invalid email/password', status: 401 });
   try {
-    const users = await User.find();
-    res.status(200).json(users);
+    const user = await User.findOne({ email: email });
+    const validatedPass = await bcrypt.compare(password, user.password);
+    if (!validatedPass) throw new Error;
+    console.log(`${email} successfully logged in`);
+    res.status(200).json({ message: 'Successful login', status: 200 });
   } catch (err) {
-    console.error(err.message);
-    res.status(500);
+    console.log('ERROR: Invalid email/password: \n' , err);
+    res.status(401).json({ error: 'Invalid email/password', status: 401 });
   }
 }
 
+const logout = async (req, res) => {
+
+}
+
+const addToCart = async (req, res) => {
+
+}
+/* Controller function to handle retrieving all registered users */
+/* ADMIN USE ONLY - DO NOT USE */
+// const getUsers = async (_, res) => {
+//   try {
+//     const users = await User.find();
+//     res.status(200).json(users);
+//   } catch (err) {
+//     console.error(err.message);
+//     res.status(500);
+//   }
+// }
+
 module.exports = {
-  addUser,
-  getUsers,
+  register,
+  login,
+  // getUsers,
 }
