@@ -43,13 +43,14 @@ const register = async (req, res) => {
 
 /* Controller function to handle login requests */
 const login = async (req, res) => {
-  const { email, password } = req.body;
-  if (!(email && password)) return res.status(401).json({ error: 'Invalid email/password', status: 401 });
   try {
+    const { email, password } = req.body;
+    if (!(email && password)) return res.status(401).json({ error: 'Invalid email/password', status: 401 });
     const user = await User.findOne({ email: email });
     const validatedPass = await bcrypt.compare(password, user.password);
-    if (!validatedPass) throw new Error;
+    if (!validatedPass) throw new Error();
     console.log(`${email} successfully logged in`);
+    req.session.uid = user._id;
     res.status(200).json({ message: 'Successful login', status: 200 });
   } catch (err) {
     console.log('ERROR: Invalid email/password: \n' , err);
@@ -58,11 +59,23 @@ const login = async (req, res) => {
 }
 
 const logout = async (req, res) => {
-
+  req.session.destroy((err) => {
+    if (err) {
+      res.status(500).json({ error, message: 'Could not log out, please try again' });
+    } else {
+      res.clearCookie('sid')
+      res.sendStatus(200);
+    }
+  })
 }
 
-const addToCart = async (req, res) => {
-
+const myCart = async (req, res) => {
+  try {
+    // console.log(req.session.id)
+    res.status(200).json(req.user);
+  } catch (err) {
+    res.status(404).json(err.message);
+  }
 }
 /* Controller function to handle retrieving all registered users */
 /* ADMIN USE ONLY - DO NOT USE */
@@ -79,5 +92,7 @@ const addToCart = async (req, res) => {
 module.exports = {
   register,
   login,
+  logout,
+  myCart
   // getUsers,
 }

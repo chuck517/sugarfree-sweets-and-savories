@@ -8,7 +8,7 @@ const authMiddleware = async (req, res, next) => {
     req.user = user;
     next();
   } catch (err) {
-    return res.sendStatus(401);
+    return res.status(401).json({ error: 'YOU DONE BROKE IT' });
   }
 };
 

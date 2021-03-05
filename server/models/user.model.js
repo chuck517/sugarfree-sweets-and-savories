@@ -17,6 +17,6 @@ const userSchema = new Schema({
     type: String,
     required: true,
   },
-});
+}, { collection: 'registered_users' });
 
 module.exports = model('User', userSchema);

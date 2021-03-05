@@ -1,6 +1,6 @@
 const { Schema, model } = require('.');
 
-const itemSchema = new Schema({
+const productSchema = new Schema({
   name: {
     type: String,
     required: true,
@@ -21,6 +21,10 @@ const itemSchema = new Schema({
     type: Number,
     required: true,
   },
+  img: {
+    type: String,
+    required: true,
+  },
 });
 
-module.exports = model('Item', itemSchema);
+module.exports = model('product', productSchema);
