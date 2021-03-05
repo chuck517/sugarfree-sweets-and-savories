@@ -2,6 +2,7 @@ const bcrypt = require('bcrypt');
 const validator = require('validator');
 
 const User = require('../models/user.model');
+const userCart = require('./cart');
 
 const SALT = parseInt(process.env.SALT);
 
@@ -34,6 +35,7 @@ const register = async (req, res) => {
     });
     user = await newUser.save();
     req.session.uid = user._id;
+    userCart.createCart(user._id);
     res.status(201).json(user);
   } catch (err) {
     console.log('ERROR: Unable to create user: \n' , err);

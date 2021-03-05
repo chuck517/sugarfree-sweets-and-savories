@@ -1,6 +1,7 @@
 const { Router } = require('express');
 const products = require('../controllers/products');
 const users = require('../controllers/users');
+const cart = require('../controllers/cart');
 const authMiddleware = require('../middlewares/auth.js');
 
 const router = Router();
@@ -13,10 +14,12 @@ router.get('/store', products.getProducts);
 router.post('/register', users.register)
 // Route for getting a single user from the database
 router.post('/login', users.login);
-// Route for logging a user out of the store
-router.post('/logout', authMiddleware, users.logout);
 // Route for viewing user session
 router.get('/mycart', authMiddleware, users.myCart);
+// Route for adding currently viewed product to cart
+router.put('/store/:product', authMiddleware, cart.addToCart);
+// Route for logging a user out of the store
+router.post('/logout', authMiddleware, users.logout);
 // Route for getting all users from the database - DO NOT USE - NOT IMPLEMENTED
 // router.get('/users', users.getUsers);
 
