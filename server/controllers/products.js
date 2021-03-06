@@ -30,7 +30,20 @@ const getProducts = async (_, res) => {
   }
 }
 
+const getProductById = async (req, res) => {
+  try {
+    if (!req.params) throw new Error();
+    const { id } = req.params;
+    let product = await Product.findOne({ _id: id });
+    product.id = id;
+    res.status(200).json(product);
+  } catch (err) {
+    
+  }
+}
+
 module.exports = {
   addProduct,
   getProducts,
+  getProductById,
 }

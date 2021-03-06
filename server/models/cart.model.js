@@ -1,16 +1,16 @@
 const { Schema, model } = require('.');
 
 const prodDetailsSchema = new Schema({
+  pid: String,
   name: String,
   cost: Number,
 });
 
 const cartSchema = new Schema({
-  user_id: {
+  _id: {
     type: String,
     required: true,
   },
-  total: Number,
   contents: [prodDetailsSchema],
 });
 
