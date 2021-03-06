@@ -18,7 +18,7 @@ const addProduct = async (req, res) => {
     console.error(err.message);
     res.status(err.status);
   }
-}
+};
 
 const getProducts = async (_, res) => {
   try {
@@ -28,7 +28,7 @@ const getProducts = async (_, res) => {
     console.error(err.message);
     res.status(500);
   }
-}
+};
 
 const getProductById = async (req, res) => {
   try {
@@ -38,12 +38,12 @@ const getProductById = async (req, res) => {
     product.id = id;
     res.status(200).json(product);
   } catch (err) {
-    
+    console.log(err);
   }
-}
+};
 
 module.exports = {
   addProduct,
   getProducts,
   getProductById,
-}
+};

@@ -7,14 +7,14 @@ const createCart = async (id, res) => {
       _id: id,
       total: 0,
       products: [],
-    })
+    });
     newCart.save();
-    console.log(`Shopping cart for User# ${id} created`)
+    console.log(`Shopping cart for User# ${id} created`);
   } catch (err) {
     console.log(err);
     res.status(500).json(err);
   }
-}
+};
 
 const addToCart = async (req, res) => {
   try {
@@ -29,7 +29,7 @@ const addToCart = async (req, res) => {
   } catch (err) {
     res.status(500).json(err);
   }
-}
+};
 
 const removeFromCart = async (req, res) => {
   try {
@@ -39,7 +39,7 @@ const removeFromCart = async (req, res) => {
     // console.log(itemID);
     // console.log(pid);
     const cost = await Cart.findOne({ _id: uid }, {
-      "contents.$": { _id: itemID },
+      'contents.$': { _id: itemID },
     }).cost;
     console.log(cost);
     await Cart.findOneAndUpdate({ _id: uid }, {
@@ -49,7 +49,7 @@ const removeFromCart = async (req, res) => {
   } catch (err) {
     res.status(500).json(err);
   }
-}
+};
 
 // const calculateCost = (cart) => {
 //   return cart.reduce((accumulator, currentValue) => {
@@ -68,4 +68,4 @@ module.exports = {
   createCart,
   addToCart,
   removeFromCart,
-}
+};

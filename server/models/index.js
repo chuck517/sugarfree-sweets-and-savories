@@ -8,6 +8,6 @@ mongoose.connect(`mongodb://localhost:27017/${dbName}`, {
   useFindAndModify: false,
 }).then(() => {
   console.log('Connected to the bakery database');
-})
+});
 
 module.exports = mongoose;

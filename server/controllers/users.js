@@ -39,9 +39,9 @@ const register = async (req, res) => {
     res.status(201).json(user);
   } catch (err) {
     console.log('ERROR: Unable to create user: \n' , err);
-    res.status(400).json({ err, message: "Unable to create user, please check your information and try again." });
+    res.status(400).json({ err, message: 'Unable to create user, please check your information and try again.' });
   }
-}
+};
 
 /* Controller function to handle login requests */
 const login = async (req, res) => {
@@ -58,18 +58,18 @@ const login = async (req, res) => {
     console.log('ERROR: Invalid email/password: \n' , err);
     res.status(401).json({ error: 'Invalid email/password', status: 401 });
   }
-}
+};
 
 const logout = async (req, res) => {
   req.session.destroy((err) => {
     if (err) {
       res.status(500).json({ error, message: 'Could not log out, please try again' });
     } else {
-      res.clearCookie('sid')
+      res.clearCookie('sid');
       res.sendStatus(200);
     }
-  })
-}
+  });
+};
 
 const myCart = async (req, res) => {
   try {
@@ -78,7 +78,7 @@ const myCart = async (req, res) => {
   } catch (err) {
     res.status(404).json(err.message);
   }
-}
+};
 /* Controller function to handle retrieving all registered users */
 /* ADMIN USE ONLY - DO NOT USE */
 // const getUsers = async (_, res) => {
@@ -97,4 +97,4 @@ module.exports = {
   logout,
   myCart
   // getUsers,
-}
+};

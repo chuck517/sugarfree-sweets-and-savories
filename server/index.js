@@ -43,6 +43,6 @@ const server = app.listen(PORT, (err) => {
   } else {
     console.log(`Server listening on PORT ${PORT}`);
   }
-})
+});
 
 module.exports = server;
