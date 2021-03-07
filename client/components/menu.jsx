@@ -1,37 +1,25 @@
-import Link from 'next/link';
-import { useContext } from 'react';
+import { useContext } from "react";
+import { CartContext } from "../contexts/CartContext";
+import ProductCard from "./productcard";
 
-const Menu = ({ menu }) => {
+const Menu = ({ menu, addToCart, removeFromCart }) => {
+  const { cart, setCart } = useContext(CartContext);
   return (
     <div>
       {
         menu.map((product) => (
           <div key={product.id}>
-            <Link href={`/store/${product.id}`}>
-              <div>
-                <style jsx>
-                  {`
-                    font-size: 25px;
-                    font-weight: bolder;
-                    text-shadow: 0 0 5px white;
-                    border-radius: 15px;
-                    background-image: url('${product.img}');
-                    width: 400px;
-                    height: 200px;
-                    box-shadow: 2px 2px 5px rgba(0, 0, 0, 50%);
-                    cursor: pointer;
-                  `}
-                </style>
-                {product.name} - ${product.price}
-              </div>
-            </Link>
+            <ProductCard
+              product={product}
+            />
+            <button onClick={() => {
+              addToCart(product);
+              console.log(cart);
+            }}>Add to cart</button>
+            <button onClick={() => {
+              removeFromCart(product);
+            }}>Remove from cart</button>
             <br />
-            {/* {product.description}
-            <br />
-            {product.nutrition}
-            <br />
-            {product.ingredients}
-            <br /> */}
             <br />
           </div>          
         ))

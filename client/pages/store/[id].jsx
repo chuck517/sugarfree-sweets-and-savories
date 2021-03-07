@@ -1,27 +1,33 @@
 import { useContext } from 'react';
 import Link from 'next/link';
-import { getProductById, getMenu, handleAddToCart } from '../../utils/menu';
+import Sidebar from '../../components/sidebar';
+import { CartContext } from '../../contexts/CartContext';
+import { getProductById, getMenu } from '../../utils/menu';
+import styles from '../../styles/Index.module.css';
 
 const ProductPage = ({ product }) => {
+  const { cart, setCart } = useContext(CartContext);
+
   return (
     <div>
       <h1>{product.name}</h1>
       <div>
         <div>
-          <img src={product.img} />
-          <p>{product.description}</p>
+          <div>
+            <img src={product.img} />
+            <p>{product.description}</p>
+          </div>
+          <div>
+            <small>Nutritional Information: {product.nutrition}</small><br />
+            <small>Ingredients: {product.ingredients}</small>
+          </div>
         </div>
-        <div>
-          <small>Nutritional Information: {product.nutrition}</small><br />
-          <small>Ingredients: {product.ingredients}</small>
-        </div>
-      </div>
-      <div>
         <span>
           <Link href={'/'}>
             <button>Back to homepage</button>
           </Link>
         </span>
+        <Sidebar />
       </div>
     </div>
   );

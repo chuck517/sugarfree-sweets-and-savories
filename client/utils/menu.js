@@ -21,7 +21,3 @@ export const getProductById = async (id) => {
   const product = await response.json();
   return product;
 }
-
-export const handleAddToCart = async (e) => {
-  e.preventDefault();
-}
