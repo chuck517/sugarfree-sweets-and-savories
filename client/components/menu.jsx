@@ -1,9 +1,10 @@
-import { useContext } from "react";
+import { useContext, useEffect } from "react";
 import { CartContext } from "../contexts/CartContext";
 import ProductCard from "./productcard";
 
 const Menu = ({ menu, addToCart, removeFromCart }) => {
   const { cart, setCart } = useContext(CartContext);
+  
   return (
     <div>
       {
@@ -14,7 +15,6 @@ const Menu = ({ menu, addToCart, removeFromCart }) => {
             />
             <button onClick={() => {
               addToCart(product);
-              console.log(cart);
             }}>Add to cart</button>
             <button onClick={() => {
               removeFromCart(product);

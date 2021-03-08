@@ -5,6 +5,7 @@ import styles from '../styles/Index.module.css';
 
 const Sidebar = () => {
   const { cart, setCart } = useContext(CartContext);
+  
   return (
     <div className={styles.sidebar}>
       <div>
