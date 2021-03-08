@@ -1,12 +1,23 @@
 import React, { useState, useMemo, useEffect } from 'react';
 
-import { CartContext, addToCart, removeFromCart } from '../contexts/CartContext';
+import { CartContext } from '../contexts/CartContext';
 import '../styles/globals.css';
 
 
 function MyApp({ Component, pageProps }) {
   const [cart, setCart] = useState([]);
   
+  useEffect(() => {
+    const myCart = localStorage.getItem('cart');
+    console.log(myCart);
+  }, [])
+
+  useEffect(() => {
+    const myCart = cart.map((item) => ({ id: item.id, quantity: item.quantity}));
+    // console.log(myCart);
+    localStorage.setItem('cart', myCart);
+  }, [cart])
+
   const addToCart = (product) => {
     const foundItem = cart.find(item => item.id === product.id);
     if (!foundItem) {
@@ -17,9 +28,9 @@ function MyApp({ Component, pageProps }) {
       foundItem.quantity++;
       const updatedCart = cart;
       updatedCart[index] = foundItem;
-      setCart(updatedCart);
+      setCart([...updatedCart]);
     }
-  }  
+  }
   
   const removeFromCart = (product) => {
     const foundItem = cart.find(item => item.id === product.id);
@@ -32,7 +43,7 @@ function MyApp({ Component, pageProps }) {
         foundItem.quantity--;
         const updatedCart = cart;
         updatedCart[index] = foundItem;
-        setCart(updatedCart);
+        setCart([...updatedCart]);
       }
     }
   }
