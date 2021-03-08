@@ -14,7 +14,7 @@ export const getStaticProps = async () => {
   };
 };
 
-const Index = ({ menu, cartQuantity, addToCart, removeFromCart }) => {
+const Index = ({ menu, addToCart, removeFromCart }) => {
   return (
     <main>
       <div>

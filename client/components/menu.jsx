@@ -12,15 +12,9 @@ const Menu = ({ menu, addToCart, removeFromCart }) => {
           <div key={product.id}>
             <ProductCard
               product={product}
+              addToCart={addToCart}
+              removeFromCart={removeFromCart}
             />
-            <button onClick={() => {
-              addToCart(product);
-            }}>Add to cart</button>
-            <button onClick={() => {
-              removeFromCart(product);
-            }}>Remove from cart</button>
-            <br />
-            <br />
           </div>          
         ))
       }
