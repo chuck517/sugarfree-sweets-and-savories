@@ -37,10 +37,10 @@ function MyApp({ Component, pageProps }) {
     }
   }
 
-  const cartInventory = useMemo(() => ({ cart, setCart }), [cart, setCart]);
+  const inventory = useMemo(() => ({ cart, setCart }), [cart, setCart]);
   
   return (
-    <CartContext.Provider value={cartInventory}>
+    <CartContext.Provider value={inventory}>
       <Component {...pageProps}
         addToCart={addToCart}
         removeFromCart={removeFromCart}
