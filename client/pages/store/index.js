@@ -7,7 +7,7 @@ const Dashboard = ({ menu, addToCart, removeFromCart }) => {
     <div className={styles.menuWindow}>
       {
         menu.map((product) => (
-          <div key={product.id}>
+          <div key={product._id}>
             <ProductCard
               product={product}
               addToCart={addToCart}

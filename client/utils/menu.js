@@ -13,7 +13,7 @@ export const getMenu = async () => {
   const response = await fetch(`${servUrl}/store`, fetchConfig);
   const menu = await response.json();
   return menu.map((product) => ({
-    id: product._id,
+    _id: product._id,
     name: product.name,
     description: product.description,
     nutrition: product.nutrition,
@@ -23,7 +23,7 @@ export const getMenu = async () => {
   }));
 }
 
-export const getProductById = async (id) => {
+export const getProductById = async (_id) => {
   const fetchConfig = {
     method: 'GET',
     headers: {
@@ -31,7 +31,7 @@ export const getProductById = async (id) => {
     },
     credentials: 'include',
   }
-  const response = await fetch(`${servUrl}/store/${id}`, fetchConfig);
+  const response = await fetch(`${servUrl}/store/${_id}`, fetchConfig);
   const product = await response.json();
   return product;
 }

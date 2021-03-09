@@ -17,7 +17,7 @@ router.post('/user/register', users.register);
 // Route for getting a single user from the database
 router.post('/user/login', users.login);
 // Route for viewing user session
-router.get('/user/mycart', authMiddleware, users.myCart);
+router.post('/user/mycart', authMiddleware, cart.getCart);
 // Route for adding currently viewed product to cart
 router.put('/user/mycart/save', authMiddleware, cart.saveCart);
 // Route for removing a product from cart

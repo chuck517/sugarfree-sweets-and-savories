@@ -28,9 +28,9 @@ app.use(
     secret: SECRET,
     cookie: {
       maxAge: 1000 * 60 * 60,
-      sameSite: true,
-      httpOnly: false,
-      secure: false,
+      // sameSite: true,
+      // httpOnly: false,
+      // secure: false,
     },
   })
 );

@@ -29,7 +29,7 @@ const Sidebar = () => {
         <div className={styles.cart}>In Cart:</div>
         {
           cart.map(item => (
-            <div className={styles.cart} key={item.id}>{item.quantity} - {item.name}</div>
+            <div className={styles.cart} key={item._id}>{item.quantity} - {item.name}</div>
           ))
         }
       </div>

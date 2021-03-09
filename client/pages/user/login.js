@@ -3,6 +3,7 @@ import { UserContext } from '../../contexts/UserContext';
 import { useRouter } from 'next/router';
 import apiService from '../../utils/api';
 import auth from '../../utils/auth';
+import { CartContext } from '../../contexts/CartContext';
 
 const initialState = {
   email: '',
@@ -11,7 +12,8 @@ const initialState = {
 
 
 const Login = () => {
-  const { userIsAuthenticated, setUserIsAuthenticated } = useContext(UserContext)
+  const { userIsAuthenticated, setUserIsAuthenticated } = useContext(UserContext);
+  const { cart, setCart } = useContext(CartContext);
   const [state, setState] = useState(initialState);
   
   const router = useRouter();
@@ -27,16 +29,19 @@ const Login = () => {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-
+    
     const { email, password } = state;
     const user = { email, password };
     const res = await apiService.login(user);
 
-    if (res.message) {
+    if (res.error) {
       alert(`${res.message}`);
       setState(initialState);
     } else {
-      setUserIsAuthenticated(true);      
+      setUserIsAuthenticated(true);
+      const { contents } = await apiService.getCart(res);
+      console.log(contents);
+      setCart(contents);
       auth.login(() => router.push('/'));
     }
   };

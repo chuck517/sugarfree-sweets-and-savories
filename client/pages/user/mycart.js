@@ -1,7 +1,8 @@
 import Link from "next/link";
-import { useContext } from "react";
+import { useContext, useEffect } from "react";
 import ProductCardCart from "../../components/ProductCardCart.js";
 import { CartContext } from "../../contexts/CartContext";
+import { UserContext } from "../../contexts/UserContext.js";
 import styles from '../../styles/Cart.module.css';
 import apiService from "../../utils/api.js";
 
@@ -10,21 +11,20 @@ const MyCart = () => {
 
   const handleSave = async (e) => {
     e.preventDefault();
-
     const res = await apiService.saveCart(cart);
-    if (res.message) {
+    if (res.error) {
       alert(`${res.message}`);
     } else {
-      
+      console.log('SAVE')
     }
   }
 
   const handleClear = async (e) => {
     e.preventDefault();
     
-    const res = await apiService.clearCart();
+    const res = await apiService.clearCart(cart);
 
-    if (res.message) {
+    if (res.error) {
       alert(`${res.message}`);
     } else {
       setCart([]);

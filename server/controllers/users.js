@@ -52,8 +52,10 @@ const login = async (req, res) => {
     const validatedPass = await bcrypt.compare(password, user.password);
     if (!validatedPass) throw new Error();
     console.log(`${email} successfully logged in`);
-    req.session.uid = user._id;
-    res.status(200).json(user.firstName);
+    
+    req.session.uid = user._id; 
+    console.log(req.session);
+    res.status(200).json(user);
   } catch (err) {
     console.log('ERROR: Invalid email/password: \n' , err);
     res.status(401).json({ message: 'Invalid email/password', status: 401 });
@@ -71,14 +73,6 @@ const logout = async (req, res) => {
   });
 };
 
-const myCart = async (req, res) => {
-  try {
-    // console.log(req.session.id)
-    res.status(200).json(req.user);
-  } catch (err) {
-    res.status(404).json({ message: 'There is no cart associated with this user', status: 404});
-  }
-};
 /* Controller function to handle retrieving all registered users */
 /* ADMIN USE ONLY - DO NOT USE */
 // const getUsers = async (_, res) => {
@@ -95,6 +89,5 @@ module.exports = {
   register,
   login,
   logout,
-  myCart
   // getUsers,
 };

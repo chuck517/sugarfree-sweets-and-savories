@@ -4,15 +4,18 @@ import styles from '../styles/ProductCard.module.css';
 const ProductCard = ({ product, addToCart, removeFromCart }) => {  
   return (
     <div className={styles.product_card}>
-      <Link href={`/store/${product.id}`}>
+      <Link href={`/store/${product._id}`}>
         <div>
           <style jsx>
             {`
               border-top-left-radius: 15px;
               border-top-right-radius: 15px;
               background-image: url('${product.img}');
-              width: 475px;
-              height: 250px;
+              background-size: cover;
+              width: 25vw;
+              min-width: 200px;
+              height: 20vh;
+              min-height: 100px;
             `}
           </style>
         </div>

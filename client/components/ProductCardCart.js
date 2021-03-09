@@ -4,7 +4,7 @@ import styles from '../styles/ProductCard.module.css';
 const ProductCardCart = ({ product }) => {  
   return (
     <div className={styles.cartCard}>
-      <Link href={`/store/${product.id}`}>
+      <Link href={`/store/${product._id}`}>
         <div>
           <style jsx>
             {`

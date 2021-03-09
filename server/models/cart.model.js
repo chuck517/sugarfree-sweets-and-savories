@@ -3,7 +3,12 @@ const { Schema, model } = require('.');
 const prodDetailsSchema = new Schema({
   pid: String,
   name: String,
-  cost: Number,
+  description: String,
+  nutrition: String,
+  ingredients: String,
+  price: Number,
+  img: String,
+  quantity: Number,
 });
 
 const cartSchema = new Schema({

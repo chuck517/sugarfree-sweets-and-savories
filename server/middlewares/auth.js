@@ -2,13 +2,14 @@ const User = require('../models/user.model');
 
 const authMiddleware = async (req, res, next) => {
   try {
+    console.log(req.session.uid);
     const { uid } = req.session;
     const user = await User.findOne({ _id: uid });
-    if (!user) throw new Error();
+    if (!user) throw new Error({ message: 'Unauthorized', status: 401 });
     req.user = user;
     next();
   } catch (err) {
-    return res.status(401).json({ error: 'YOU DONE BROKE IT' });
+    return res.status(401).json(err.message);
   }
 };
 

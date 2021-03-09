@@ -10,7 +10,8 @@ const MyApp = ({ Component, pageProps }) => {
   const [userIsAuthenticated, setUserIsAuthenticated] = useState(false);
 
   const addToCart = (product) => {
-    const foundItem = cart.find(item => item.id === product.id);
+    console.log('Start:', cart);
+    const foundItem = cart.find(item => item._id === product._id);
     if (!foundItem) {
       product.quantity = 1;
       setCart([...cart, product]);
@@ -21,10 +22,11 @@ const MyApp = ({ Component, pageProps }) => {
       updatedCart[index] = foundItem;
       setCart([...updatedCart]);
     }
+    console.log('End:', cart);
   }
   
   const removeFromCart = (product) => {
-    const foundItem = cart.find(item => item.id === product.id);
+    const foundItem = cart.find(item => item._id === product._id);
     if (foundItem) {
       if (foundItem.quantity === 1) {
         const updatedCart = cart.filter(item => product.name !== item.name)
