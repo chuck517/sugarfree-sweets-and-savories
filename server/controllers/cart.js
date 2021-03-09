@@ -1,11 +1,9 @@
 const Cart = require('../models/cart.model');
-const Product = require('../models/product.model');
 
 const createCart = async (id, res) => {
   try {
     const newCart = new Cart({
       _id: id,
-      total: 0,
       products: [],
     });
     newCart.save();
@@ -16,38 +14,26 @@ const createCart = async (id, res) => {
   }
 };
 
-const addToCart = async (req, res) => {
+const saveCart = async (req, res) => {
   try {
     const { uid } = req.session;
-    const productID = req.params.product;
-    const { name, price } = await Product.findOne({ _id: productID });
-    await Cart.findOneAndUpdate({ _id: uid }, {
-      $push: { contents: { pid: productID, name, cost: price }},
-      $inc: { total: price },
-    });
+    console.log('SAVE');
+    console.log(req.body);
+    await Cart.findOneAndReplace({ _id: uid }, { _id: uid, contents: req.body });
     res.status(200).json({ message: 'Success!' });
   } catch (err) {
-    res.status(500).json(err);
+    res.status(500).json({ message: 'Internal Server Error', status: 500 });
   }
 };
 
-const removeFromCart = async (req, res) => {
+const clearCart = async (req, res) => {
   try {
+    console.log('CLEAR');
     const { uid } = req.session;
-    console.log(req.body);
-    const itemID = req.params.product;
-    // console.log(itemID);
-    // console.log(pid);
-    const cost = await Cart.findOne({ _id: uid }, {
-      'contents.$': { _id: itemID },
-    }).cost;
-    console.log(cost);
-    await Cart.findOneAndUpdate({ _id: uid }, {
-      $pull: { contents: { _id: itemID }},
-    });
+    await Cart.findOneAndReplace({ _id: uid }, { _id: uid, contents: [] });
     res.status(200).json({ message: 'Beleted!' });
   } catch (err) {
-    res.status(500).json(err);
+    res.status(500).json({ message: 'Internal Server Error', status: 500 });
   }
 };
 
@@ -66,6 +52,6 @@ const removeFromCart = async (req, res) => {
 
 module.exports = {
   createCart,
-  addToCart,
-  removeFromCart,
+  saveCart,
+  clearCart,
 };

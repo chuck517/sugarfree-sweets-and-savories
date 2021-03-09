@@ -1,8 +1,11 @@
+import { useContext, useState } from 'react';
+import { UserContext } from '../contexts/UserContext';
 import styles from '../styles/Index.module.css';
-import Menu from '../components/menu';
-import Sidebar from '../components/sidebar';
+import Dashboard from './store';
+import Sidebar from '../components/Sidebar';
 
 import { getMenu } from '../utils/menu';
+import auth from '../utils/auth';
 
 export const getStaticProps = async () => {
   const menu = await getMenu();
@@ -15,15 +18,18 @@ export const getStaticProps = async () => {
 };
 
 const Index = ({ menu, addToCart, removeFromCart }) => {
+  const { userIsAuthenticated, setUserIsAuthenticated } = useContext(UserContext);
+
+  console.log(userIsAuthenticated);
   return (
     <main>
-      <div>
+      <div className={styles.header}>
         <div>Bakery Place!</div>
       </div>
       <div className={styles.dashboard}>
         <div className={styles.menu}>
           <h1>Menu</h1>
-          <Menu 
+          <Dashboard
             menu={menu}
             addToCart={addToCart}
             removeFromCart={removeFromCart}

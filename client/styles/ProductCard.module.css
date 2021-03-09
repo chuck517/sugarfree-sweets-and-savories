@@ -1,0 +1,43 @@
+.product_card {
+  font-size: 25px;
+  font-weight: bolder;
+  text-shadow: 0 0 5px white;
+  border-radius: 15px;
+  background-color: wheat;
+  box-shadow: 2px 2px 5px rgba(133, 109, 67, 0.5);
+  transition: transform 200ms ease-in-out;
+  cursor: pointer;
+}
+.product_card:hover {
+  transform: scale(1.05);
+  transition: transform 200ms ease-in-out;
+}
+
+.product_name {
+  color: rgb(126, 89, 42);
+  margin-left: 10px;
+  margin-right: 20px;
+}
+
+.button {
+  font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+  font-size: 20px;
+  width: 50%;
+  height: 30px;
+  border: none;
+  background-color: rgb(216, 195, 157);
+  box-shadow: 0 0 5px 2px rgb(216, 195, 157);
+  transition: background-color 200ms ease-in-out;
+  transition: color 200ms ease-in-out;
+}
+.button:hover {
+  color: white;
+  background-color: rgb(190, 146, 105);
+  box-shadow: 0 0 5px 2px rgb(190, 146, 105);
+  transition: background-color 200ms ease-in-out;
+  transition: color 200ms ease-in-out;
+  cursor: pointer;
+}
+.button:focus {
+  outline: none;
+}

@@ -1,34 +1,35 @@
 import Link from 'next/link';
+import styles from '../styles/ProductCard.module.css';
 
 const ProductCard = ({ product, addToCart, removeFromCart }) => {  
   return (
-    <div>
+    <div className={styles.product_card}>
       <Link href={`/store/${product.id}`}>
         <div>
           <style jsx>
             {`
-              font-size: 25px;
-              font-weight: bolder;
-              text-shadow: 0 0 5px white;
-              border-radius: 15px;
+              border-top-left-radius: 15px;
+              border-top-right-radius: 15px;
               background-image: url('${product.img}');
-              width: 400px;
-              height: 200px;
-              box-shadow: 2px 2px 5px rgba(0, 0, 0, 50%);
-              cursor: pointer;
+              width: 475px;
+              height: 250px;
             `}
           </style>
-          {product.name} - ${product.price}
         </div>
       </Link>
         <div>
-          <button onClick={() => {
+          <button
+            className={styles.button}
+            onClick={() => {
             addToCart(product);
           }}>Add to cart</button>
-          <button onClick={() => {
+          <button
+            className={styles.button}
+            onClick={() => {
             removeFromCart(product);
           }}>Remove from cart</button>
           <br />
+          <span className={styles.product_name}>{product.name} - ${product.price}</span>
           <br />
         </div>
       </div>

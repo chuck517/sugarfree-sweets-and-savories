@@ -1,0 +1,20 @@
+.cartCard {
+  transform: scale(0.5);
+  width: 475px;
+  font-size: 25px;
+  font-weight: bolder;
+  text-shadow: 0 0 5px white;
+  border-radius: 15px;
+  background-color: wheat;
+  box-shadow: 2px 2px 5px rgba(133, 109, 67, 0.5);
+}
+/* .product_card:hover {
+  transform: scale(1.05);
+  transition: transform 200ms ease-in-out;
+}
+
+.product_name {
+  color: rgb(126, 89, 42);
+  margin-left: 10px;
+  margin-right: 20px;
+} */

@@ -1,9 +1,10 @@
-import ProductCard from "./productcard";
+import ProductCard from "../../components/ProductCard";
+import styles from '../../styles/Menu.module.css';
 
-const Menu = ({ menu, addToCart, removeFromCart }) => {
+const Dashboard = ({ menu, addToCart, removeFromCart }) => {
   
   return (
-    <div>
+    <div className={styles.menuWindow}>
       {
         menu.map((product) => (
           <div key={product.id}>
@@ -19,4 +20,4 @@ const Menu = ({ menu, addToCart, removeFromCart }) => {
   )
 };
 
-export default Menu;
+export default Dashboard;

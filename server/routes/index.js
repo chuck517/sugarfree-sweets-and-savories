@@ -17,13 +17,13 @@ router.post('/user/register', users.register);
 // Route for getting a single user from the database
 router.post('/user/login', users.login);
 // Route for viewing user session
-router.get('/mycart', authMiddleware, users.myCart);
+router.get('/user/mycart', authMiddleware, users.myCart);
 // Route for adding currently viewed product to cart
-router.put('/mycart/add/:product', authMiddleware, cart.addToCart);
+router.put('/user/mycart/save', authMiddleware, cart.saveCart);
 // Route for removing a product from cart
-router.put('/mycart/delete/:product', authMiddleware, cart.removeFromCart);
+router.put('/user/mycart/clear', authMiddleware, cart.clearCart);
 // Route for logging a user out of the store
-router.post('/logout', authMiddleware, users.logout);
+router.post('/user/logout', authMiddleware, users.logout);
 // Route for getting all users from the database - DO NOT USE - NOT IMPLEMENTED
 // router.get('/users', users.getUsers);
 

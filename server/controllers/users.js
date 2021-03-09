@@ -13,13 +13,13 @@ const register = async (req, res) => {
   try {
     /* Ensure email is valid and doesn't already exist */
     let user = await User.findOne({ email: email });
-    if (user) return res.status(409).json({ error: 'Email already registered', status: 409 });
-    if (!validator.isEmail(email)) return res.status(400).json({ error: 'Email is invalid', status: 400 });
+    if (user) return res.status(409).json({ message: 'Email already registered', status: 409 });
+    if (!validator.isEmail(email)) return res.status(400).json({ message: 'Email is invalid', status: 400 });
     
     /* Ensure user's password isn't too weak */
     if (!validator.isStrongPassword(password, {
       minLength: 8, minLowercase: 1, minUppercase: 1, minNumbers: 1, minSymbols: 1,
-    })) return res.status(400).json({ error: 'Password is too weak', status: 400 });
+    })) return res.status(400).json({ message: 'Password is too weak', status: 400 });
     const hash = await bcrypt.hash(password, SALT); // encrypt password for secure storage
 
     /* Ensure First and Last names are properly serialized */
@@ -39,7 +39,7 @@ const register = async (req, res) => {
     res.status(201).json(user);
   } catch (err) {
     console.log('ERROR: Unable to create user: \n' , err);
-    res.status(400).json({ err, message: 'Unable to create user, please check your information and try again.' });
+    res.status(400).json({ message: 'Unable to create user, please check your information and try again.' });
   }
 };
 
@@ -47,23 +47,23 @@ const register = async (req, res) => {
 const login = async (req, res) => {
   try {
     const { email, password } = req.body;
-    if (!(email && password)) return res.status(401).json({ error: 'Invalid email/password', status: 401 });
+    if (!(email && password)) return res.status(401).json({ message: 'Invalid email/password', status: 401 });
     const user = await User.findOne({ email: email });
     const validatedPass = await bcrypt.compare(password, user.password);
     if (!validatedPass) throw new Error();
     console.log(`${email} successfully logged in`);
     req.session.uid = user._id;
-    res.status(200).json({ message: 'Successful login', status: 200 });
+    res.status(200).json(user.firstName);
   } catch (err) {
     console.log('ERROR: Invalid email/password: \n' , err);
-    res.status(401).json({ error: 'Invalid email/password', status: 401 });
+    res.status(401).json({ message: 'Invalid email/password', status: 401 });
   }
 };
 
 const logout = async (req, res) => {
   req.session.destroy((err) => {
     if (err) {
-      res.status(500).json({ error, message: 'Could not log out, please try again' });
+      res.status(500).json({ message: 'Could not log out, please try again', status: 500 });
     } else {
       res.clearCookie('sid');
       res.sendStatus(200);
@@ -76,7 +76,7 @@ const myCart = async (req, res) => {
     // console.log(req.session.id)
     res.status(200).json(req.user);
   } catch (err) {
-    res.status(404).json(err.message);
+    res.status(404).json({ message: 'There is no cart associated with this user', status: 404});
   }
 };
 /* Controller function to handle retrieving all registered users */
