@@ -1,5 +1,5 @@
 import React, { useContext, useState } from 'react';
-import { UserContext } from '../../contexts/UserContext';
+import { UserAuthorizationContext, UserNameContext } from '../../contexts/UserContext';
 import { useRouter } from 'next/router';
 import apiService from '../../utils/api';
 import auth from '../../utils/auth';
@@ -14,9 +14,10 @@ const initialState = {
 
 
 const Login = () => {
-  const { userIsAuthenticated, setUserIsAuthenticated } = useContext(UserContext);
+  const { userName, setUserName } = useContext(UserNameContext);
+  const { userIsAuthenticated, setUserIsAuthenticated } = useContext(UserAuthorizationContext);
   const { cart, setCart } = useContext(CartContext);
-  const [state, setState] = useState(initialState);
+  const [ state, setState ] = useState(initialState);
   
   const router = useRouter();
 
@@ -36,13 +37,14 @@ const Login = () => {
     const user = { email, password };
     const res = await apiService.login(user);
 
-    if (res.error) {
+    if (res.message) {
       alert(`${res.message}`);
       setState(initialState);
     } else {
+      const name = res.firstName;
+      setUserName(name);
       setUserIsAuthenticated(true);
       const { contents } = await apiService.getCart(res);
-      console.log(contents);
       setCart(contents);
       auth.login(() => router.push('/'));
     }

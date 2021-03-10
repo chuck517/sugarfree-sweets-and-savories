@@ -1,6 +1,6 @@
 import { useRouter } from 'next/router';
 import React, { useContext, useState } from 'react';
-import { UserContext } from '../../contexts/UserContext';
+import { UserAuthorizationContext, UserNameContext } from '../../contexts/UserContext';
 import apiService from '../../utils/api';
 import auth from '../../utils/auth';
 import styles from '../../styles/loginRegister.module.css';
@@ -14,7 +14,8 @@ const initialState = {
 };
 
 const Register = () => {
-  const { userIsAuthenticated, setUserIsAuthenticated } = useContext(UserContext);
+  const { userName, setUserName } = useContext(UserNameContext);
+  const { userIsAuthenticated, setUserIsAuthenticated } = useContext(UserAuthorizationContext);
   const [state, setState] = useState(initialState);
 
   const router = useRouter();
@@ -39,6 +40,7 @@ const Register = () => {
       alert(`${res.message}`);
       setState(initialState);
     } else {
+      setUserName(firstName);
       setUserIsAuthenticated(true);
       auth.login(() => router.push('/'));
     }

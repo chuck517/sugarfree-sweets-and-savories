@@ -1,7 +1,7 @@
 import Link from 'next/link';
 import { useContext, useEffect, useState } from 'react';
 
-import { UserContext } from '../contexts/UserContext';
+import { UserAuthorizationContext, UserNameContext } from '../contexts/UserContext';
 import { CartContext } from '../contexts/CartContext';
 import { CartTotalContext } from '../contexts/CartTotalContext';
 
@@ -9,7 +9,8 @@ import styles from '../styles/Sidebar.module.css';
 import apiService from '../utils/api';
 
 const Sidebar = () => {
-  const { userIsAuthenticated, setUserIsAuthenticated } = useContext(UserContext);
+  const { userName, setUserName } = useContext(UserNameContext);
+  const { userIsAuthenticated, setUserIsAuthenticated } = useContext(UserAuthorizationContext);
   const { cart, setCart } = useContext(CartContext);
   const { cartTotal, setCartTotal } = useContext(CartTotalContext);
 
@@ -54,7 +55,7 @@ const Sidebar = () => {
             <button className={styles.button}>Register</button>
           </Link>
           :
-          <h2 className={styles.welcomeMessage}>Welcome!</h2>
+          <h2 className={styles.welcomeMessage}>Welcome back,<br />{userName}!</h2>
         }
         {
           userIsAuthenticated ? 
@@ -68,7 +69,7 @@ const Sidebar = () => {
         }
       </div>
       <div className={styles.cartContainer}>
-        <div className={styles.cart}>In Cart:</div>
+        <div className={styles.cart}>In Your Cart:</div>
         {
           cart.map(item => (
             <div className={styles.cart} key={item._id}>{item.quantity} - {item.name}</div>

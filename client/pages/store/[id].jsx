@@ -21,9 +21,15 @@ const ProductPage = ({ product }) => {
                 </div>
             </div>
           </div>
-          <Link href={'/'}>
-            <button className={styles.backButton}>Back to homepage</button>
-          </Link>
+          <div className={styles.buttonRow}>
+            <Link href={'/'}>
+              <button className={styles.backButton}>Back to homepage</button>
+            </Link>
+            <div>
+              <button>+</button>
+              <button>-</button>
+            </div>
+          </div>
         </div>
         <div className={styles.sidebar}>
           <Sidebar />

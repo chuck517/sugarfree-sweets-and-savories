@@ -1,4 +1,9 @@
-.productImage {
+.productImage {  
+  display: block;
+  max-width:600px;
+  max-height:400px;
+  width: auto;
+  height: auto;
   margin: 15px;
   padding: 15px;
   background-color: rgba(222, 184, 135, 0.5);
@@ -70,6 +75,22 @@
   position: absolute;
   top: 0;
   right: 0;
+}
+
+.buttonRow {
+  display: inherit;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  height: 50px;
+  min-width: 200px;
+  margin: 20px 50px 0 50px;
+  font-size: 1.5vw;
+  background: none;
+  border: none;
+  /* border-color:rgb(255, 255, 255); */
+  transition: background-color 200ms ease-in-out;
+  transition: color 200ms ease-in-out;
 }
 
 .backButton {

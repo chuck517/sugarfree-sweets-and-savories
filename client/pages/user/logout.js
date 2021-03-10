@@ -2,14 +2,14 @@ import Link from "next/link";
 import { useRouter } from "next/router";
 import { useContext } from "react";
 import { CartContext } from "../../contexts/CartContext";
-import { UserContext } from "../../contexts/UserContext";
+import { UserAuthorizationContext } from "../../contexts/UserContext";
 import apiService from "../../utils/api";
 import auth from "../../utils/auth";
 import styles from '../../styles/loginRegister.module.css';
 
 const Logout = () => {
   const { cart, setCart } = useContext(CartContext);
-  const { userIsAuthenticated, setUserIsAuthenticated } = useContext(UserContext);
+  const { userIsAuthenticated, setUserIsAuthenticated } = useContext(UserAuthorizationContext);
   const router = useRouter();
 
   const handleClick = () => {

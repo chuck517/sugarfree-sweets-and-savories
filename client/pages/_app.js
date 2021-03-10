@@ -1,6 +1,6 @@
 import React, { useState, useMemo } from 'react';
 
-import { UserContext } from '../contexts/UserContext';
+import { UserAuthorizationContext, UserNameContext } from '../contexts/UserContext';
 import { CartContext } from '../contexts/CartContext';
 import { CartTotalContext } from '../contexts/CartTotalContext';
 
@@ -8,6 +8,7 @@ import '../styles/globals.css';
 
 
 const MyApp = ({ Component, pageProps }) => {
+  const [ userName, setUserName ] = useState('');
   const [ userIsAuthenticated, setUserIsAuthenticated ] = useState(false);
   const [ cart, setCart ] = useState([]);
   const [ cartTotal, setCartTotal ] = useState(0);
@@ -45,18 +46,21 @@ const MyApp = ({ Component, pageProps }) => {
   }
 
   const inventory = useMemo(() => ({ cart, setCart }), [cart, setCart]);
-  
+  const uName = useMemo(() => ({ userName, setUserName }), [userName, setUserName]);
+
   return (
-    <UserContext.Provider value={{ userIsAuthenticated, setUserIsAuthenticated }}>
-      <CartContext.Provider value={ inventory }>
-        <CartTotalContext.Provider value={{ cartTotal, setCartTotal }}>
-          <Component {...pageProps}
-            addToCart={addToCart}
-            removeFromCart={removeFromCart}
-          />
-        </CartTotalContext.Provider>
-      </CartContext.Provider>
-    </UserContext.Provider>
+    <UserNameContext.Provider value={uName}>
+      <UserAuthorizationContext.Provider value={{ userIsAuthenticated, setUserIsAuthenticated }}>
+        <CartContext.Provider value={ inventory }>
+          <CartTotalContext.Provider value={{ cartTotal, setCartTotal }}>
+            <Component {...pageProps}
+              addToCart={addToCart}
+              removeFromCart={removeFromCart}
+            />
+          </CartTotalContext.Provider>
+        </CartContext.Provider>
+      </UserAuthorizationContext.Provider>
+    </UserNameContext.Provider>
   )
 }
 

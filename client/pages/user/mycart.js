@@ -1,14 +1,13 @@
 import Link from "next/link";
 import { useContext, useEffect } from "react";
-import ProductCardCart from "../../components/ProductCardCart.js";
 import { CartContext } from "../../contexts/CartContext";
 import { CartTotalContext } from "../../contexts/CartTotalContext.js";
-import { UserContext } from "../../contexts/UserContext.js";
+import { UserNameContext } from "../../contexts/UserContext";
 import styles from '../../styles/Cart.module.css';
 import apiService from "../../utils/api.js";
 
 const MyCart = () => {
-  const { user, setUser } = useContext(UserContext);
+  const { userName, setUserName } = useContext(UserNameContext);
   const { cart, setCart } = useContext(CartContext);
   const { cartTotal, setCartTotal } = useContext(CartTotalContext);
 
@@ -34,25 +33,20 @@ const MyCart = () => {
     }
   };
     
-  // const handleCheckout = async (e) => {
-  //   e.preventDefault();
-  //   const res = await apiService.checkout(user, cart, cartTotal);
-  //   if (res.error) {
-  //     alert(`${res.message}`);
-  //   } else {
-  //     console.log('CHECKOUT');
-  //   }
-  // }
-
   return (
     <div className={styles.window}>
       <div className={styles.cartContainer}>
       <h2 className={styles.storeNotice}>UNFORTUNATELY DUE TO TIME CONSTRAINTS WE ARE CURRENTLY ONLY ACCEPTING CASH AS PAYMENT<br />ONLINE PAYMENT IS COMING SOON™</h2>
-        <h2>Your Cart</h2>
+        <h2>{userName}'s Cart</h2>
         <div className={styles.cartViewer}>
           {
             cart.map((product) => (
-              <h3 key={product._id}>{product.quantity}x - {product.name}</h3>      
+              <h3
+                className={styles.cartItem}
+                key={product._id}
+              >
+                {product.quantity}x - {product.name}
+              </h3>      
             ))
           }
         </div>

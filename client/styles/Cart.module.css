@@ -32,6 +32,16 @@
   width: 50%;
   min-height: 20%;
   border-radius: 15px;
+  padding: 5px;
+  border: solid 2px rgba(139, 84, 32, 0.5);
+  min-height: 10vh;
+  min-width: 200px;
+  font-size: 2vh;
+  overflow-y: auto;
+}
+
+.cartItem {
+  margin: 5px;
 }
 
 .optionsContainer {
