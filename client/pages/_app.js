@@ -1,13 +1,16 @@
-import React, { useState, useMemo, useEffect, useContext } from 'react';
+import React, { useState, useMemo } from 'react';
 
-import { CartContext } from '../contexts/CartContext';
 import { UserContext } from '../contexts/UserContext';
+import { CartContext } from '../contexts/CartContext';
+import { CartTotalContext } from '../contexts/CartTotalContext';
+
 import '../styles/globals.css';
 
 
 const MyApp = ({ Component, pageProps }) => {
-  const [cart, setCart] = useState([]);
-  const [userIsAuthenticated, setUserIsAuthenticated] = useState(false);
+  const [ userIsAuthenticated, setUserIsAuthenticated ] = useState(false);
+  const [ cart, setCart ] = useState([]);
+  const [ cartTotal, setCartTotal ] = useState(0);
 
   const addToCart = (product) => {
     console.log('Start:', cart);
@@ -44,12 +47,14 @@ const MyApp = ({ Component, pageProps }) => {
   const inventory = useMemo(() => ({ cart, setCart }), [cart, setCart]);
   
   return (
-    <UserContext.Provider value={{userIsAuthenticated, setUserIsAuthenticated}}>
-      <CartContext.Provider value={inventory}>
-        <Component {...pageProps}
-          addToCart={addToCart}
-          removeFromCart={removeFromCart}
-        />
+    <UserContext.Provider value={{ userIsAuthenticated, setUserIsAuthenticated }}>
+      <CartContext.Provider value={ inventory }>
+        <CartTotalContext.Provider value={{ cartTotal, setCartTotal }}>
+          <Component {...pageProps}
+            addToCart={addToCart}
+            removeFromCart={removeFromCart}
+          />
+        </CartTotalContext.Provider>
       </CartContext.Provider>
     </UserContext.Provider>
   )

@@ -1,5 +1,7 @@
-.product_card {
-  font-size: 25px;
+.menuCard {
+  display: flex;
+  flex-direction: column;
+  max-width: 450px;
   font-weight: bolder;
   text-shadow: 0 0 5px white;
   border-radius: 15px;
@@ -8,12 +10,13 @@
   transition: transform 200ms ease-in-out;
   cursor: pointer;
 }
-.product_card:hover {
+.menuCard:hover {
   transform: scale(1.05);
   transition: transform 200ms ease-in-out;
 }
 
-.product_name {
+.productName {
+  font-size: 1.25vw;
   color: rgb(126, 89, 42);
   margin-left: 10px;
   margin-right: 20px;
@@ -21,7 +24,7 @@
 
 .button {
   font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
-  font-size: 20px;
+  font-size: 1.2vw;
   width: 50%;
   height: 30px;
   border: none;

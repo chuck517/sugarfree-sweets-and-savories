@@ -1,8 +1,13 @@
-.header {
-  position: absolute;
-  width: 100%;
-  top: 0;
-  background-color: wheat;
+.storeName {
+  position: absolute;;
+  text-align: center;
+  font-family:Georgia, 'Times New Roman', Times, serif;
+  font-style: oblique;
+  font-size: 4vh;
+  left: 0;
+  width: 85vw;
+  height: 50px;
+  background-color: burlywood;
 }
 
 .dashboard {
@@ -10,4 +15,15 @@
   justify-content: space-between;
   flex-direction: row;
   background-color: cornsilk;
+}
+
+.menu {
+  width: 100%;
+  display: flex;
+  justify-content: space-around;
+}
+
+.sidebar {
+  top: 0;
+  right: 0;
 }

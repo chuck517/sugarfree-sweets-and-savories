@@ -1,33 +1,33 @@
-import { useContext } from 'react';
 import Link from 'next/link';
 import Sidebar from '../../components/sidebar';
-import { CartContext } from '../../contexts/CartContext';
 import { getProductById, getMenu } from '../../utils/menu';
-import styles from '../../styles/Index.module.css';
+import styles from '../../styles/Product.module.css';
 
 const ProductPage = ({ product }) => {
-  const { cart, setCart } = useContext(CartContext);
-
   return (
-    <div>
-      <h1>{product.name}</h1>
-      <div>
-        <div>
-          <div>
-            <img src={product.img} />
-            <p>{product.description}</p>
+    <div className={styles.dashboardContainer}>
+      <div className={styles.dashboard}>
+        <div className={styles.productContainer}>
+          <h1 className={styles.productHeader}>{product.name}</h1>
+          <div className={styles.descriptionContainer}>
+            <div className={styles.detailsContainer}>
+              <img className={styles.productImage} src={product.img} />
+                <div className={styles.infoContainer}>
+                  <p className={styles.description}>{product.description}</p>
+                  <div className={styles.nutritionContainer}>
+                    <small>Nutritional Information: {product.nutrition}</small><br />
+                    <small>Ingredients: {product.ingredients}</small>
+                  </div>
+                </div>
+            </div>
           </div>
-          <div>
-            <small>Nutritional Information: {product.nutrition}</small><br />
-            <small>Ingredients: {product.ingredients}</small>
-          </div>
-        </div>
-        <span>
           <Link href={'/'}>
-            <button>Back to homepage</button>
+            <button className={styles.backButton}>Back to homepage</button>
           </Link>
-        </span>
-        <Sidebar />
+        </div>
+        <div className={styles.sidebar}>
+          <Sidebar />
+        </div>
       </div>
     </div>
   );
@@ -48,7 +48,7 @@ export const getStaticPaths = async () => {
   return {
     paths: menu.map((product) => ({
       params: {
-        id: product.id.toString(),
+        id: product._id.toString(),
       },
     })),
     fallback: false,

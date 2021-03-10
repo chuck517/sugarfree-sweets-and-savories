@@ -1,7 +1,13 @@
+.welcomeMessage {
+  display: flex;
+  justify-content: center;
+}
+
 .sidebar {
   position: sticky;
   top: 0;
   right: 0;
+  padding-top: 50px;
   width: 20vw;
   min-width: 215px;
   height: 100vh;
@@ -9,18 +15,21 @@
   flex-direction: column;
   align-items: center;
   align-content: center;
-  background-color: wheat;
+  background-color: burlywood;
 }
 
 .cartContainer {
   width: 90%;
   margin-top: 20px;
   padding: 10px;
-  border: solid 2px rgba(0, 0, 0, 0.5);
-  box-shadow: inset 0 0 15px 2px rgba(0, 0, 0, 0.5);
-  background-color: burlywood;
+  border: solid 2px rgba(139, 84, 32, 0.5);
+  border-radius: 20px;
+  background-color: wheat;
   width: 15vw;
+  min-height: 10vh;
+  max-height: 40vh;
   min-width: 200px;
+  overflow-y: auto;
 }
 
 .cart {
@@ -28,7 +37,7 @@
   flex-direction: column;
   align-items: center;
   width: 100%;
-  font-size: 20px;
+  font-size: 16px;
 }
 
 .button {
@@ -37,26 +46,52 @@
   justify-content: center;
   align-items: center;
   height: 50px;
-  width: 15vw;
+  width: 10vw;
   min-width: 200px;
   margin: 10px 0 0 0 ;
-  background-color: rgba(197, 178, 142, 0.5);
-  border-left: none;
-  border-right: none;
-  border-top-left-radius: 10px;
-  border-top-right-radius: 10px;
-  border-bottom-left-radius: 10px;
-  border-bottom-right-radius: 10px;
-  border-color:rgb(255, 255, 255);
+  font-size: 25px;
+  border: none;
+  background: none;
   transition: background-color 200ms ease-in-out;
 }
 .button:hover {
   cursor: pointer;
   background-color: cornsilk;
   transition-property: background-color;
-  box-shadow: inset -2px -2px 5px wheat;
+  box-shadow: inset 0px 0px 5px cornsilk;
   transition: background-color 200ms ease-in-out;
 }
 .button:focus {
+  outline: none;
+}
+
+.optionContainer {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  gap: 15px;
+  width: 50%;
+}
+
+.optionButton {
+  position: static;
+  height: 30px;
+  width: 40%;
+  min-width: 30px;
+  margin: 10px 0 0 0 ;
+  font-size: 2vh;
+  border: none;
+  background: none;
+  transition: background-color 200ms ease-in-out;
+}
+
+.optionButton:hover {
+  cursor: pointer;
+  background-color: cornsilk;
+  transition-property: background-color;
+  box-shadow: inset 0px 0px 5px cornsilk;
+  transition: background-color 200ms ease-in-out;
+}
+.optionButton:focus {
   outline: none;
 }

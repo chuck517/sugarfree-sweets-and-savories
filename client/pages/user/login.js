@@ -4,6 +4,7 @@ import { useRouter } from 'next/router';
 import apiService from '../../utils/api';
 import auth from '../../utils/auth';
 import { CartContext } from '../../contexts/CartContext';
+import styles from '../../styles/loginRegister.module.css';
 
 const initialState = {
   email: '',
@@ -50,24 +51,28 @@ const Login = () => {
     return !state.email || !state.password;
   };
   return (
-    <div>
+    <div className={styles.formContainer}>
       <h2>Login</h2>
-      <form className="form" onSubmit={handleSubmit}>
+      <form className={styles.form} onSubmit={handleSubmit}>
+        <label className={styles.formLabel}>Enter your email address:</label>
         <input
+          className={styles.field}
           type="text"
           placeholder="name@host.com"
           name="email"
           value={state.email}
           onChange={handleChange}
         />
+        <label className={styles.formLabel}>Enter your password:</label>
         <input
+          className={styles.field}        
           type="password"
           placeholder="password"
           name="password"
           value={state.password}
           onChange={handleChange}
         />
-        <button className="form-submit" type="submit" disabled={validateForm()}>
+        <button className={styles.submit} type="submit" disabled={validateForm()}>
           &nbsp;Login&nbsp;
         </button>
       </form>

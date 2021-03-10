@@ -1,7 +1,7 @@
-import styles from '../styles/Index.module.css';
-import Dashboard from './store';
+import Menu from './store';
 import Sidebar from '../components/Sidebar';
 import { getMenu } from '../utils/menu';
+import styles from '../styles/Index.module.css';
 
 export const getStaticProps = async () => {
   const menu = await getMenu();
@@ -17,23 +17,21 @@ const Index = ({ menu, addToCart, removeFromCart }) => {
   
   return (
     <main>
-      <div className={styles.header}>
-        <div>Bakery Place!</div>
-      </div>
+      <div className={styles.storeName}>BAKERY STORE</div>
       <div className={styles.dashboard}>
         <div className={styles.menu}>
-          <h1>Menu</h1>
-          <Dashboard
+          <Menu
             menu={menu}
             addToCart={addToCart}
             removeFromCart={removeFromCart}
           />
         </div>
-        <Sidebar />
+        <div className={styles.sidebar}>
+          <Sidebar />
+        </div>
       </div>
     </main>
   )
 }
-
 
 export default Index;

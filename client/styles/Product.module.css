@@ -1,0 +1,101 @@
+.productImage {
+  margin: 15px;
+  padding: 15px;
+  background-color: rgba(222, 184, 135, 0.5);
+}
+
+.dashboardContainer {
+  display: flex;
+  flex-direction: column;
+  width: 100vw;
+  height: 100vh;
+  background-color: cornsilk;
+}
+
+.dashboard {
+  display: flex;
+  margin-left: 50px;
+  width: 100vw;
+  grid-gap: 20px;
+}
+
+.productHeader {
+  margin-bottom: 5px;
+  margin-left: 50px;
+  font-size: 2vw;
+  font-style: oblique;
+  color: cornsilk;
+  text-shadow: 0 0 3px rgba(199, 125, 82, 0.5);
+}
+
+.productContainer {
+  position: absolute;
+  top: 10vh;
+  left: 5vw;
+  background-color: burlywood;
+  border-radius: 15px;
+  padding: 0 0 25px 0;
+  display: inherit;
+  flex-direction: column;
+}
+
+.detailsContainer {
+  display: flex;
+  flex-direction: row;
+  max-width: 70vw;
+}
+
+.nutritionContainer {
+  padding: 25px;
+  max-width: 100%;
+  display: inherit;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+.descriptionContainer {
+  width: 100%;
+  background-color: rgba(255, 248, 220, 0.5);
+}
+
+.description {
+  padding: 0 25px 0 25px;
+  color: rgb(121, 60, 19);
+  font-size: 1.5vw;
+  font-weight: bold;
+  font-style: oblique;
+}
+
+.sidebar {
+  position: absolute;
+  top: 0;
+  right: 0;
+}
+
+.backButton {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 50px;
+  width: 20vw;
+  min-width: 200px;
+  margin: 20px 0 0 50px;
+  font-size: 1.5vw;
+  background: none;
+  border: none;
+  /* border-color:rgb(255, 255, 255); */
+  transition: background-color 200ms ease-in-out;
+  transition: color 200ms ease-in-out;
+}
+
+.backButton:hover {
+  cursor: pointer;
+  color: rgb(121, 60, 19);
+  background-color: cornsilk;
+  box-shadow: inset 0px 0px 5px cornsilk;
+  transition: background-color 200ms ease-in-out;
+}
+
+.backButton:focus {
+  outline: none;
+}

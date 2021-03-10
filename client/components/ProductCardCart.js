@@ -11,8 +11,11 @@ const ProductCardCart = ({ product }) => {
               border-top-left-radius: 15px;
               border-top-right-radius: 15px;
               background-image: url('${product.img}');
-              width: 475px;
-              height: 250px;
+              background-size: cover;
+              width: 18vw;
+              min-width: 100px;
+              height: 10vh;
+              min-height: 50px;
             `}
           </style>
         </div>

@@ -3,6 +3,7 @@ import React, { useContext, useState } from 'react';
 import { UserContext } from '../../contexts/UserContext';
 import apiService from '../../utils/api';
 import auth from '../../utils/auth';
+import styles from '../../styles/loginRegister.module.css';
 
 const initialState = {
   email: '',
@@ -49,38 +50,48 @@ const Register = () => {
   };
 
   return (
-    <div>
+    <div className={styles.formContainer}>
       <h2>Register</h2>
-      <form className="form" onSubmit={handleSubmit}>
+      <form className={styles.form} onSubmit={handleSubmit}>
         <input
+          className={styles.field}
           type="text"
           placeholder="name@host.com"
           name="email"
           value={state.email}
           onChange={handleChange}
+          required
         />
         <input
+          className={styles.field}
           type="password"
+          pattern="(?=.*\d)(?=.*[a-zA-Z])(?=.*[!#$%^*]).{8,}"
+          title="Must contain at least:&#10;- One number&#10;- One uppercase letter&#10;- One lowercase letter&#10;- One of '!, #, $, %, ^, *'&#10;- At least 8 or more characters"
           placeholder="password"
           name="password"
           value={state.password}
           onChange={handleChange}
+          required
         />
         <input
+          className={styles.field}
           type="text"
           placeholder="First Name"
           name="firstName"
           value={state.firstName}
           onChange={handleChange}
+          required
         />
         <input
+          className={styles.field}
           type="text"
           placeholder="Last Name"
           name="lastName"
           value={state.lastName}
           onChange={handleChange}
+          required
         />
-        <button className="formSubmit" type="submit" disabled={validateForm()}>
+        <button className={styles.submit} type="submit" disabled={validateForm()}>
           &nbsp;Register&nbsp;
         </button>
       </form>

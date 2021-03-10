@@ -22,6 +22,8 @@ router.post('/user/mycart', authMiddleware, cart.getCart);
 router.put('/user/mycart/save', authMiddleware, cart.saveCart);
 // Route for removing a product from cart
 router.put('/user/mycart/clear', authMiddleware, cart.clearCart);
+// Route for user to checkout and place their order
+router.post('/user/checkout', authMiddleware, order.checkout);
 // Route for logging a user out of the store
 router.post('/user/logout', authMiddleware, users.logout);
 // Route for getting all users from the database - DO NOT USE - NOT IMPLEMENTED

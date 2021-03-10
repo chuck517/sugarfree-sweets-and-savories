@@ -3,7 +3,7 @@ import styles from '../styles/ProductCard.module.css';
 
 const ProductCard = ({ product, addToCart, removeFromCart }) => {  
   return (
-    <div className={styles.product_card}>
+    <div className={styles.menuCard}>
       <Link href={`/store/${product._id}`}>
         <div>
           <style jsx>
@@ -12,8 +12,6 @@ const ProductCard = ({ product, addToCart, removeFromCart }) => {
               border-top-right-radius: 15px;
               background-image: url('${product.img}');
               background-size: cover;
-              width: 25vw;
-              min-width: 200px;
               height: 20vh;
               min-height: 100px;
             `}
@@ -32,7 +30,7 @@ const ProductCard = ({ product, addToCart, removeFromCart }) => {
             removeFromCart(product);
           }}>Remove from cart</button>
           <br />
-          <span className={styles.product_name}>{product.name} - ${product.price}</span>
+          <span className={styles.productName}>{product.name} - ${product.price}</span>
           <br />
         </div>
       </div>
