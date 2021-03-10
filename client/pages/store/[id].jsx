@@ -1,5 +1,5 @@
 import Link from 'next/link';
-import Sidebar from '../../components/sidebar';
+import Sidebar from '../../components/Sidebar';
 import { getProductById, getMenu } from '../../utils/menu';
 import styles from '../../styles/Product.module.css';
 

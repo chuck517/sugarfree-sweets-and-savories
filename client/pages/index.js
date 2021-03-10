@@ -27,7 +27,7 @@ const Index = ({ menu, addToCart, removeFromCart }) => {
           />
         </div>
         <div className={styles.sidebar}>
-          <Sidebar />
+          {/* <Sidebar /> */}
         </div>
       </div>
     </main>
