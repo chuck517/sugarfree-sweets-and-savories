@@ -51,6 +51,7 @@
   margin: 10px 0 0 0 ;
   font-size: 25px;
   border: none;
+  border-radius: 50px;
   background: none;
   transition: background-color 200ms ease-in-out;
 }
@@ -81,6 +82,7 @@
   margin: 10px 0 0 0 ;
   font-size: 2vh;
   border: none;
+  border-radius: 50px;
   background: none;
   transition: background-color 200ms ease-in-out;
 }

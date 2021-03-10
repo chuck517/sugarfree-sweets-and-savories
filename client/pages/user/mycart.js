@@ -8,6 +8,7 @@ import styles from '../../styles/Cart.module.css';
 import apiService from "../../utils/api.js";
 
 const MyCart = () => {
+  const { user, setUser } = useContext(UserContext);
   const { cart, setCart } = useContext(CartContext);
   const { cartTotal, setCartTotal } = useContext(CartTotalContext);
 
@@ -32,6 +33,16 @@ const MyCart = () => {
       setCart([]);
     }
   };
+    
+  // const handleCheckout = async (e) => {
+  //   e.preventDefault();
+  //   const res = await apiService.checkout(user, cart, cartTotal);
+  //   if (res.error) {
+  //     alert(`${res.message}`);
+  //   } else {
+  //     console.log('CHECKOUT');
+  //   }
+  // }
 
   return (
     <div className={styles.window}>
@@ -53,9 +64,7 @@ const MyCart = () => {
         <Link href='/'>
           <button className={styles.backButton}>Go back</button>
         </Link>
-        <Link href={'/user/checkout'}>
-          <button className={styles.checkoutButton}>Checkout</button>
-        </Link>
+        <button className={styles.checkoutButton} disabled>Checkout</button>
       </div>
     </div>
   )

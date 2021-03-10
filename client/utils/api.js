@@ -64,7 +64,7 @@ apiService.saveCart = (cart) => {
     .catch(err => console.log(err))
 }
 
-apiService.checkout = (cart, cartTotal) => {
+apiService.checkout = (user, cart, cartTotal) => {
   return fetch(`${servUrl}/user/mycart/save`, {
     method: 'POST',
     credentials: 'include',

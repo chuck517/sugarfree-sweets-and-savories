@@ -2,6 +2,7 @@ const { Router } = require('express');
 const products = require('../controllers/products');
 const users = require('../controllers/users');
 const cart = require('../controllers/cart');
+const order = require('../controllers/order');
 const authMiddleware = require('../middlewares/auth.js');
 
 const router = Router();

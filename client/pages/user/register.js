@@ -4,6 +4,7 @@ import { UserContext } from '../../contexts/UserContext';
 import apiService from '../../utils/api';
 import auth from '../../utils/auth';
 import styles from '../../styles/loginRegister.module.css';
+import Link from 'next/link';
 
 const initialState = {
   email: '',
@@ -94,6 +95,11 @@ const Register = () => {
         <button className={styles.submit} type="submit" disabled={validateForm()}>
           &nbsp;Register&nbsp;
         </button>
+        <Link href={'/'}>
+          <button className={styles.submit}>
+            &nbsp;Back&nbsp;
+          </button>
+        </Link>
       </form>
     </div>
   );

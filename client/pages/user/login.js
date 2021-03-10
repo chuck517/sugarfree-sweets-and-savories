@@ -5,6 +5,7 @@ import apiService from '../../utils/api';
 import auth from '../../utils/auth';
 import { CartContext } from '../../contexts/CartContext';
 import styles from '../../styles/loginRegister.module.css';
+import Link from 'next/link';
 
 const initialState = {
   email: '',
@@ -75,6 +76,11 @@ const Login = () => {
         <button className={styles.submit} type="submit" disabled={validateForm()}>
           &nbsp;Login&nbsp;
         </button>
+        <Link href={'/'}>
+          <button className={styles.submit}>
+            &nbsp;Back&nbsp;
+          </button>
+        </Link>
       </form>
     </div>
   );

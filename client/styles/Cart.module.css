@@ -56,8 +56,8 @@
   transition: background-color 200ms ease-in-out;
 }
 .button:hover,
-.backButton:hover,
-.checkoutButton:hover {
+.backButton:hover/*,
+.checkoutButton:hover*/ {
   border-radius: 50px;
   cursor: pointer;
   background-color: cornsilk;
@@ -66,8 +66,8 @@
   transition: background-color 200ms ease-in-out;
 }
 .button:focus,
-.backButton:focus,
-.checkoutButton:focus {
+.backButton:focus/*,
+.checkoutButton:focus*/ {
   border-radius: 50px;
   outline: none;
 }
